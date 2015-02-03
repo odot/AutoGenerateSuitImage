@@ -14,7 +14,20 @@
 		E891DC971A79D28900B5F594 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E891DC961A79D28900B5F594 /* Images.xcassets */; };
 		E891DC9A1A79D28900B5F594 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E891DC981A79D28900B5F594 /* LaunchScreen.xib */; };
 		E891DCA61A79D28900B5F594 /* CommonToolLibTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E891DCA51A79D28900B5F594 /* CommonToolLibTests.m */; };
+		E8B976F51A7F92130067AE20 /* UIImage+AutoResize.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B976F41A7F92130067AE20 /* UIImage+AutoResize.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		E8BDBF891A7A0F390067272D /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ] || [ \"${PLATFORM_NAME}\" == \"ipados\" ]; then\n/Applications/Xcode.app/Contents/Developer/iphoneentitlements/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		E891DCA01A79D28900B5F594 /* PBXContainerItemProxy */ = {
@@ -40,6 +53,8 @@
 		E891DC9F1A79D28900B5F594 /* CommonToolLibTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonToolLibTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E891DCA41A79D28900B5F594 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E891DCA51A79D28900B5F594 /* CommonToolLibTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonToolLibTests.m; sourceTree = "<group>"; };
+		E8B976F31A7F92130067AE20 /* UIImage+AutoResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AutoResize.h"; sourceTree = "<group>"; };
+		E8B976F41A7F92130067AE20 /* UIImage+AutoResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AutoResize.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +96,7 @@
 		E891DC881A79D28900B5F594 /* CommonToolLib */ = {
 			isa = PBXGroup;
 			children = (
+				E8B976F21A7F92130067AE20 /* DOTModel */,
 				E891DC8D1A79D28900B5F594 /* AppDelegate.h */,
 				E891DC8E1A79D28900B5F594 /* AppDelegate.m */,
 				E891DC901A79D28900B5F594 /* ViewController.h */,
@@ -119,6 +135,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E8B976F21A7F92130067AE20 /* DOTModel */ = {
+			isa = PBXGroup;
+			children = (
+				E8B976F31A7F92130067AE20 /* UIImage+AutoResize.h */,
+				E8B976F41A7F92130067AE20 /* UIImage+AutoResize.m */,
+			);
+			path = DOTModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,6 +156,7 @@
 				E891DC841A79D28900B5F594 /* Resources */,
 			);
 			buildRules = (
+				E8BDBF891A7A0F390067272D /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -222,6 +248,7 @@
 				E891DC921A79D28900B5F594 /* ViewController.m in Sources */,
 				E891DC8F1A79D28900B5F594 /* AppDelegate.m in Sources */,
 				E891DC8C1A79D28900B5F594 /* main.m in Sources */,
+				E8B976F51A7F92130067AE20 /* UIImage+AutoResize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +307,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -297,7 +324,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -322,7 +349,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -333,7 +360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -346,8 +373,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CommonToolLib/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CommonToolLib;
 			};
 			name = Debug;
 		};
@@ -356,8 +384,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CommonToolLib/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CommonToolLib;
 			};
 			name = Release;
 		};
@@ -375,7 +404,7 @@
 				);
 				INFOPLIST_FILE = CommonToolLibTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CommonToolLibTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CommonToolLib.app/CommonToolLib";
 			};
 			name = Debug;
@@ -390,7 +419,7 @@
 				);
 				INFOPLIST_FILE = CommonToolLibTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CommonToolLibTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CommonToolLib.app/CommonToolLib";
 			};
 			name = Release;
@@ -414,6 +443,7 @@
 				E891DCAB1A79D28900B5F594 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E891DCAC1A79D28900B5F594 /* Build configuration list for PBXNativeTarget "CommonToolLibTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +452,7 @@
 				E891DCAE1A79D28900B5F594 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
