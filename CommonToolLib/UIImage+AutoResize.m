@@ -102,7 +102,7 @@
  * @param originImageType   原始图片类型（@3x、@2x、@1x，当然@1x后缀是不存在的）
  * @param autoEnLarge       是否自动放大（当提供的图片类型不是@3x时，enLarge=YES会自动生成@3x类型的图片）
  *
- * @return 初始化成功则返回BMKActionPaopaoView,否则返回nil
+ * @return void
  */
 
 + (void)generateSuitImagesWithOriginImagePath:(NSString*)originPath
